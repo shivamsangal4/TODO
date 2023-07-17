@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: lightblue;
+        }
+        h1{
+            color: red;
+            display: flex;
+            padding: 100px;
+            align-items: center;
+            align-content: center;
+        }
+    </style>
+</head>
+    
+<body>
+    <div class="main">
+        <h1>TODO APP</h1>
+        <div class="block">
+            <h1>TASKS:</h1>
+            <input type="text" id="text1" placeholder="Enter ToDo">
+            <button class="Add" id="addelement">
+                Add Task
+            </button>
+            <button class="fetch" id="fetchelement" onclick="fetchApi()">
+                Fetch from API
+            </button>
+            <div id="content">
+                
+            </div>
+            
+            
+        </div>
+    </div>
+    <script src="ToDo.js"></script>
+</body>
+</html>
