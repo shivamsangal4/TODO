@@ -8,21 +8,53 @@
         body{
             background-color: lightblue;
         }
-        h1{
-            color: red;
-            display: flex;
+        #todo_title{
+            color: black;
+            margin: auto;
+            /* display: flex;
             padding: 100px;
             align-items: center;
-            align-content: center;
+            align-content: center; */
+        }
+        .block
+        {
+            position: absolute;
+            border: 5px solid;
+            left: 30%;
+            /* width: 50%; */
+            background-color: lightgrey;
+            margin: auto;
+            float:left;
+width:500px;
+overflow-y: auto;
+height: 500px;
+        }
+        #background{
+            position: relative;
+            z-index: -1;
+            margin: -100px;
+            padding: 0;
+            width: 1400px;
+            height: 1300px;
+        }
+        #h1_task h1{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* width: 100%; */
+        }
+        img{
+            
         }
     </style>
 </head>
     
 <body>
     <div class="main">
-        <h1>TODO APP</h1>
+        <h1 id="todo_title">TODO APP</h1>
         <div class="block">
-            <h1>TASKS:</h1>
+            <div id="h1_task"><h1 >TASKS:</h1></div>
+            
             <input type="text" id="text1" placeholder="Enter ToDo">
             <button class="Add" id="addelement">
                 Add Task
@@ -33,9 +65,10 @@
             <div id="content">
                 
             </div>
-            
+
             
         </div>
+        <img src="https://images.pexels.com/photos/1410226/pexels-photo-1410226.jpeg" id="background">
     </div>
     <script src="ToDo.js"></script>
 </body>

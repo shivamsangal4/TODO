@@ -51,12 +51,14 @@ function DeleteElement(task_num)
     let index = ar.indexOf(ar.find(o => o.task_num === task_num));
     ar.splice(index,1);
 
-    if(ar.length<=1)
+    if(ar.length<1)
     {
         localStorage.removeItem('array');
     }
     else
-    localStorage.setItem('array',ar);
+    {
+        localStorage.setItem('array', JSON.stringify(ar));
+    }
     display();
 }
 
@@ -65,7 +67,7 @@ function update(task_num)
     let task = document.getElementById('change').value
     let index = ar.indexOf(ar.find(o => o.task_num === task_num));
     ar[index] = {task_num: total_element, job:task};
-    localStorage.setItem('array',ar);
+    localStorage.setItem('array',JSON.stringify(ar));
     display();
 }
 
