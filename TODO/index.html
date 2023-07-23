@@ -43,9 +43,6 @@ height: 500px;
             justify-content: center;
             /* width: 100%; */
         }
-        img{
-            
-        }
     </style>
 </head>
     
@@ -54,14 +51,56 @@ height: 500px;
         <h1 id="todo_title">TODO APP</h1>
         <div class="block">
             <div id="h1_task"><h1 >TASKS:</h1></div>
-            
-            <input type="text" id="text1" placeholder="Enter ToDo">
+            Enter Task:
+            <input type="text" id="text1" placeholder="Enter ToDo" onkeydown="autodate()">
+            <br>
+            Enter Tags:
+            <input type="text" id="text2" placeholder="Like: play,ball,games">
+            <br>
+            Enter Deadline:
+            <input type="datetime-local" id="deadline"> 
+            <br>
+            Priority:
+            <select  name="Priority" id="priority" >
+            <option value="high">high</option>    
+            <option value="medium" selected>medium</option>
+            <option value="low">low</option>
+            </select>
+            <br>
+            Reminder:
+            <input type="datetime-local" id="Reminder" name="Reminder">
+            <br>
+            <br>
             <button class="Add" id="addelement">
                 Add Task
             </button>
             <button class="fetch" id="fetchelement" onclick="fetchApi()">
                 Fetch from API
             </button>
+            <a href="logs.html">
+                <button>logs</button>
+            </a>
+            
+            <a href="sort.html">
+                <button id="_sorting"> Sort Priority</button>
+            </a>
+            <a href="date_sort.html">
+                <button >sort-by-date</button>
+            </a>
+            <br>
+            <br>
+            <label for="tagDropdown">Select a Tag:</label>
+            <select id="tagDropdown">
+            </select>
+
+            <a href="tags.html">
+                <button onclick="selected__tag()">Search</button>
+            </a>
+
+
+                
+            <br>
+            <br>
             <div id="content">
                 
             </div>
@@ -71,5 +110,8 @@ height: 500px;
         <img src="https://images.pexels.com/photos/1410226/pexels-photo-1410226.jpeg" id="background">
     </div>
     <script src="ToDo.js"></script>
+    <script src="update.js"></script>
+    <script src="autodate.js"></script>
+    <!-- <script src="sorting.js"></script> -->
 </body>
 </html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- HTML -->
+<input type="text" id="todoInput" placeholder="Enter your todo with due date">
+
+<script>
+  // JavaScript
+  document.addEventListener('DOMContentLoaded', function () {
+    const todoInput = document.getElementById('todoInput');
+
+    todoInput.addEventListener('input', function () {
+      const userInput = todoInput.value.trim();
+
+      // Regular expressions to capture date and time information
+      const dateRegex = /(?:\bby\b\s+)((?:(?:(?:today|tomorrow|day after tomorrow)|(?:(?:\d{1,2}(?:st|nd|rd|th)?)\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(?:\d{4})?)))(?:\s+\d{1,2}(?::\d{2})?\s+(?:am|pm))?)?/i;
+      const timeRegex = /(\d{1,2}(?::\d{2})?\s+(?:am|pm))/i;
+
+      let dueDate = null;
+      let todoText = userInput;
+
+      // Extract date information from user input
+      const dateMatch = userInput.match(dateRegex);
+      if (dateMatch) {
+        const dateStr = dateMatch[1].toLowerCase();
+        if (dateStr === 'today') {
+          dueDate = new Date().toDateString();
+        } else if (dateStr === 'tomorrow') {
+          const tomorrow = new Date();
+          tomorrow.setDate(tomorrow.getDate() + 1);
+          dueDate = tomorrow.toDateString();
+        } else if (dateStr === 'day after tomorrow') {
+          const dayAfterTomorrow = new Date();
+          dayAfterTomorrow.setDate(dayAfterTomorrow.getDate() + 2);
+          dueDate = dayAfterTomorrow.toDateString();
+        } else {
+          const parsedDate = new Date(dateStr);
+          if (!isNaN(parsedDate)) {
+            dueDate = parsedDate.toDateString();
+          }
+        }
+
+        // Remove the date portion from the todo text
+        todoText = userInput.replace(dateRegex, '').trim();
+      }
+
+      // Extract time information from user input
+      const timeMatch = userInput.match(timeRegex);
+      if (timeMatch && dueDate) {
+        const timeStr = timeMatch[1].toLowerCase();
+        const hours = parseInt(timeStr.split(':')[0], 10);
+        const minutes = parseInt(timeStr.split(':')[1], 10) || 0;
+
+        if (timeStr.includes('pm') && hours < 12) {
+          dueDate = new Date(dueDate);
+          dueDate.setHours(hours + 12, minutes);
+        } else if (timeStr.includes('am') && hours === 12) {
+          dueDate = new Date(dueDate);
+          dueDate.setHours(0, minutes);
+        } else {
+          dueDate = new Date(dueDate);
+          dueDate.setHours(hours, minutes);
+        }
+
+        // Remove the time portion from the todo text
+        todoText = userInput.replace(timeRegex, '').trim();
+      }
+
+      console.log('Todo Text:', todoText);
+      console.log('Due Date:', dueDate);
+    });
+  });
+</script>
+</body>
+</html>
